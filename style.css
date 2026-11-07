@@ -16,6 +16,7 @@ h2{margin:48px 0 12px}
 .note{color:var(--muted);font-size:.9rem;margin-top:12px}
 .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
 figure{margin:0}
+.gallery{align-items:start}
 figure img{width:100%;height:auto;border-radius:8px;border:1px solid var(--line);display:block}
 figcaption{color:var(--muted);font-size:.9rem;margin-top:6px}
 ul.features{padding-left:1.2em}
