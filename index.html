@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Astrofits: a viewer for FITS astrophotography frames</title>
+<meta name="description" content="Fast FITS viewer for astrophotographers. Auto-stretch that matches PixInsight, debayering, folder mosaic, blink. Windows, Linux and macOS.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+<header>
+  <h1>Astrofits</h1>
+  <p class="lead">A fast viewer for FITS astrophotography frames. Open a frame or a whole folder, see it
+  stretched the way PixInsight would, and cull the bad ones.</p>
+  <div class="downloads">
+    <a class="btn" id="dl-windows" href="https://github.com/veljac/astrofits-site/releases"><strong>Windows</strong><span>zip with installer</span></a>
+    <a class="btn" id="dl-macos" href="https://github.com/veljac/astrofits-site/releases"><strong>macOS</strong><span>universal .dmg (Apple silicon and Intel)</span></a>
+    <a class="btn" id="dl-linux" href="https://github.com/veljac/astrofits-site/releases"><strong>Linux</strong><span>.deb for Debian and Ubuntu</span></a>
+  </div>
+  <p class="note" id="version-note">All versions are on the <a href="https://github.com/veljac/astrofits-site/releases">releases page</a>.
+  Builds are not signed or notarized: on macOS use right-click, Open on first launch.</p>
+</header>
+
+<section>
+  <h2>What it does</h2>
+  <ul class="features">
+    <li>Mono and one-shot-colour frames, with debayering for every Bayer pattern.</li>
+    <li>Auto-stretch that matches PixInsight, linked or per channel.</li>
+    <li>Open a folder and get a mosaic of every frame; the view follows the folder as files come and go.</li>
+    <li>Blink through frames, each with its own stretch, and mark frames to move or delete.</li>
+    <li>1:1, fit to window, FITS header view, keyboard-driven with a controls-free mode.</li>
+    <li>Windows, Linux and macOS, with "View with Astrofits" in the file manager.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Screenshots</h2>
+  <div class="gallery" id="screenshots">
+    <!-- <figure><img src="img/mosaic.jpg" alt="Folder mosaic"><figcaption>Folder mosaic</figcaption></figure> -->
+    <p class="note">Screenshots coming soon.</p>
+  </div>
+</section>
+
+<section>
+  <h2>About me</h2>
+  <p>I photograph the night sky and wrote Astrofits because I wanted to check a night's frames quickly,
+  on any computer, without opening a heavy tool.</p>
+  <div class="gallery" id="photos">
+    <!-- <figure><img src="img/m31.jpg" alt="M31"><figcaption>M31, 2026</figcaption></figure> -->
+  </div>
+</section>
+
+<footer>Astrofits is free to use. The source code is not published.</footer>
+</main>
+<script>
+fetch('latest.json',{cache:'no-cache'}).then(r=>r.json()).then(m=>{
+  for (const os of ['windows','macos','linux']) {
+    const a = m.assets && m.assets[os], el = document.getElementById('dl-'+os);
+    if (a && el) el.href = a;
+  }
+  const n = document.getElementById('version-note');
+  if (n && m.version) n.insertAdjacentHTML('afterbegin', 'Latest: <strong>v'+m.version+'</strong>'+(m.prerelease?' (pre-release)':'')+'. ');
+}).catch(()=>{});
+</script>
+</body>
+</html>
